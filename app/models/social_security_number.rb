@@ -1,14 +1,11 @@
 class SocialSecurityNumber
-  
-  def number_generator
-    SecureRandom.random_number(10)
-  end
-  
+    
   def inefficiently_make_a_social_security_number
       default = "XXX-XX-XXXX"
-      random_number = number_generator
-      default.gsub("X", random_number)
-      default
+      new_number = default.split("").map do |char|
+        char.gsub("X", SecureRandom.random_number(10).to_s)
+      end
+      new_number.join
   end
   
 end
